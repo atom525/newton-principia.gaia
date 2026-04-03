@@ -1,0 +1,19 @@
+[project]
+name = "newton-principia-gaia"
+version = "1.0.0"
+description = "Newton's derivation of freefall acceleration — Gaia Lang v5"
+authors = [{name = "Isaac Newton"}]
+requires-python = ">=3.12"
+dependencies = []
+
+[tool.setuptools.packages.find]
+include = ["newton_principia*"]
+
+[tool.gaia]
+namespace = "reg"
+type = "knowledge-package"
+uuid = "d2e3f4a5-b6c7-8901-bcde-f23456789012"
+
+[build-system]
+requires = ["setuptools>=69.0"]
+build-backend = "setuptools.build_meta"
