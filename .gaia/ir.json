@@ -1,0 +1,136 @@
+{
+  "ir_hash": "sha256:2e11b7bc5105fe874b52205d562c2ef9ded49f7b88f0642263df596e28ac70ea",
+  "knowledges": [
+    {
+      "content": "Near the Earth's surface: $r \\approx R_\\oplus$, gravitational acceleration can be treated as uniform.",
+      "content_hash": "444fe193e0bc368a5683597e1c480d6e02d73b5082ea6b0b908258d5795efa1f",
+      "id": "reg:newton_principia::near_earth_surface",
+      "label": "near_earth_surface",
+      "parameters": [],
+      "type": "setting"
+    },
+    {
+      "content": "Kepler's third law (1619): $T^2 \\propto a^3$ for planetary orbits.",
+      "content_hash": "21dab1823e59896175b152fdbde2f1d04ef1b6bc8462976e6f2c19e5602923fa",
+      "id": "reg:newton_principia::kepler_third_law",
+      "label": "kepler_third_law",
+      "parameters": [],
+      "type": "claim"
+    },
+    {
+      "content": "Newton's second law: $\\vec{F} = m_i \\vec{a}$.",
+      "content_hash": "0b5f4eac70d43357c344979724fd9a13c9ade06855cbd07ae7e44a52ac5e58fc",
+      "id": "reg:newton_principia::second_law",
+      "label": "second_law",
+      "parameters": [],
+      "type": "claim"
+    },
+    {
+      "content": "Newton's third law: $\\vec{F}_{AB} = -\\vec{F}_{BA}$.",
+      "content_hash": "38c5586d86261bca63c400503174eb23e939773795250b14d341daabd791b5c6",
+      "id": "reg:newton_principia::third_law",
+      "label": "third_law",
+      "parameters": [],
+      "type": "claim"
+    },
+    {
+      "content": "Newton's pendulum experiments: all materials have the same period to within $1/1000$, implying $m_i \\propto m_g$.",
+      "content_hash": "0da90ab80e8633cc49b290312708593d71472519910142003fa98b0653c00d03",
+      "id": "reg:newton_principia::pendulum_experiment",
+      "label": "pendulum_experiment",
+      "parameters": [],
+      "type": "claim"
+    },
+    {
+      "content": "Inverse-square law: $F \\propto r^{-2}$ for circular orbits.",
+      "content_hash": "96941205dd7f4dcec7611771ce051342ab7119b811ec5c9be7fab6984eecfab1",
+      "id": "reg:newton_principia::inverse_square_force",
+      "label": "inverse_square_force",
+      "parameters": [],
+      "type": "claim"
+    },
+    {
+      "content": "Universal gravitation: $F = G\\,m_1 m_2 / r^2$.",
+      "content_hash": "4898747222821c83b183ec8886d6da03b4776d23a634ab10ae2b7e4c69e0f3db",
+      "id": "reg:newton_principia::law_of_gravity",
+      "label": "law_of_gravity",
+      "parameters": [],
+      "type": "claim"
+    },
+    {
+      "content": "Inertial mass equals gravitational mass: $m_i = m_g$.",
+      "content_hash": "1142bd77e8a49322ffb0e3ea5910d79a8f203afc714f55cf8299b291aa6840d2",
+      "id": "reg:newton_principia::mass_equivalence",
+      "label": "mass_equivalence",
+      "parameters": [],
+      "type": "claim"
+    },
+    {
+      "content": "Freefall acceleration: $g = GM_\\oplus / R_\\oplus^2 \\approx 9.8\\,\\text{m/s}^2$, independent of mass.",
+      "content_hash": "eca7f6bc9506eb78efda5c122313fa620f1cf7751673f4f3f134383fd515ea7d",
+      "id": "reg:newton_principia::freefall_acceleration",
+      "label": "freefall_acceleration",
+      "parameters": [],
+      "type": "claim"
+    },
+    {
+      "content": "Why does $m_i = m_g$ exactly? Einstein's equivalence principle (1907).",
+      "content_hash": "147b253362ab1ed16fdc8f3dc19b52795ce58d58783129dc32a318d3bdfdac71",
+      "id": "reg:newton_principia::ep_question",
+      "label": "ep_question",
+      "parameters": [],
+      "type": "question"
+    }
+  ],
+  "namespace": "reg",
+  "operators": [],
+  "package_name": "newton_principia",
+  "scope": "local",
+  "strategies": [
+    {
+      "conclusion": "reg:newton_principia::inverse_square_force",
+      "premises": [
+        "reg:newton_principia::kepler_third_law",
+        "reg:newton_principia::second_law"
+      ],
+      "scope": "local",
+      "strategy_id": "lcs_813a3a4370c6c951",
+      "type": "noisy_and"
+    },
+    {
+      "conclusion": "reg:newton_principia::law_of_gravity",
+      "premises": [
+        "reg:newton_principia::inverse_square_force",
+        "reg:newton_principia::third_law"
+      ],
+      "scope": "local",
+      "strategy_id": "lcs_7d246398f8e27b62",
+      "type": "noisy_and"
+    },
+    {
+      "conclusion": "reg:newton_principia::mass_equivalence",
+      "premises": [
+        "reg:newton_principia::pendulum_experiment",
+        "reg:newton_principia::second_law",
+        "reg:newton_principia::law_of_gravity"
+      ],
+      "scope": "local",
+      "strategy_id": "lcs_2d7d4e1b74dfbdd3",
+      "type": "noisy_and"
+    },
+    {
+      "background": [
+        "reg:newton_principia::near_earth_surface"
+      ],
+      "conclusion": "reg:newton_principia::freefall_acceleration",
+      "premises": [
+        "reg:newton_principia::second_law",
+        "reg:newton_principia::law_of_gravity",
+        "reg:newton_principia::mass_equivalence"
+      ],
+      "scope": "local",
+      "strategy_id": "lcs_d46ee963e4a0398a",
+      "type": "noisy_and"
+    }
+  ]
+}
